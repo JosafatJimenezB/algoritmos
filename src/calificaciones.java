@@ -17,11 +17,12 @@ public class calificaciones {
             grupo[i] = sc.nextInt();
         }
 
-        System.out.println("Promedio de calificaciones = " + promedioCalificaciones(grupo));
-        System.out.println("Numero de alumnos aprobados = "+ alumnosAprobados(grupo));
-        System.out.println("Numero de alumnos reprobados = " + alumnosReprobados(grupo));
-        System.out.println("Porcentaje de alumnos aprobados = "+ porcentajeAprobados(grupo) + "%");
-        System.out.println("Porcentaje de alumnos reprobados = "+ porcentajeReprobados(grupo) + "%");
+        System.out.println("Promedio de calificaciones: " + promedioCalificaciones(grupo));
+        System.out.println("Numero de alumnos aprobados: "+ alumnosAprobados(grupo));
+        System.out.println("Numero de alumnos reprobados: " + alumnosReprobados(grupo));
+        System.out.println("Porcentaje de alumnos aprobados: "+ porcentajeAprobados(grupo) + "%");
+        System.out.println("Porcentaje de alumnos reprobados: "+ porcentajeReprobados(grupo) + "%");
+        System.out.println("Alumnos con calificaion menor o igual a ocho: " + calificacionMenor(grupo));
     }
 
     public static double promedioCalificaciones(int[] g){
@@ -81,6 +82,18 @@ public class calificaciones {
         double per = (count * 100)/g.length;
 
         return per;
+    }
+
+    public static int calificacionMenor(int[] g){
+        int count = 0;
+
+        for (int j = 0; j < g.length; j++){
+            if (g[j] <= 8){
+                count += 1;
+            }
+        }
+
+        return count;
     }
 
 
