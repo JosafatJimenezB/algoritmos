@@ -2,16 +2,22 @@ import java.util.Scanner;
 
 public class calificaciones {
     public static void main(String[] args) {
+
+        // objeto scanner para lectura de datos por consola
         Scanner sc = new Scanner(System.in);
 
+
+        // determinacion de tamaño del arreglo por el usuario
         int alumnos = 0;
         System.out.println("ingrese el numero de alumnos");
         alumnos = sc.nextInt();
 
+        // tamaño del arreglo por el usuario
         int[] grupo;
         grupo = new int[alumnos];
 
 
+        // insertar valores de las calificaciones en el arreglo
         for (int i = 0; i < grupo.length; i++){
             System.out.println("Ingrese calificaion de el alumno "+i);
             grupo[i] = sc.nextInt();
@@ -95,6 +101,4 @@ public class calificaciones {
 
         return count;
     }
-
-
 }
