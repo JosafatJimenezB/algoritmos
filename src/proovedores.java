@@ -7,6 +7,7 @@ public class proovedores {
 
         int proovedores = 0;
         int menu = 0;
+        int opc = 0;
 
         System.out.println("Ingrese el numero de proovedores: ");
         proovedores = sc.nextInt();
@@ -41,7 +42,7 @@ public class proovedores {
             System.out.println("4.- Mostrar todos los proovedores");
             System.out.println("5.- Salir");
 
-            int opc = sc.nextInt();
+            opc = sc.nextInt();
 
             switch (opc) {
                 case 1:
@@ -67,14 +68,18 @@ public class proovedores {
                     System.out.println("******************************************************\n\n");
                     break;
 
+                 case 5:
+                     System.out.println("********** EXIT *********");
+                     break;
+
                 default:
-                    System.out.println("*********** Operacion no valida **************");
+                    System.out.println("*********** Opcion no valida **************\n\n");
                     break;
 
 
             }
 
 
-        }while (menu != 5) ;
+        }while (opc != 5) ;
     }
 }
