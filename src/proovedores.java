@@ -1,12 +1,10 @@
 import java.util.Scanner;
-import java.util.*;
 public class proovedores {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int proovedores = 0;
-        int menu = 0;
         int opc = 0;
 
 
@@ -16,8 +14,8 @@ public class proovedores {
 
         //int[] provArray = new int[proovedores];
         String[] nameProovedores = new String[proovedores];
-        String[] nameCity = new String[proovedores];
-        int[] numberProduct = new int[proovedores];
+        String[] nameCity = new String[nameProovedores.length];
+        int[] numberProduct = new int[nameProovedores.length];
 
         for (int i = 0; i < proovedores; i++) {
 
@@ -40,15 +38,30 @@ public class proovedores {
             System.out.println("                        Menu                          ");
             System.out.println("1.- Agregar proovedor");
             System.out.println("2.- Buscar proovedor");
-            System.out.println("3.- Actualizar articulos del proovedor");
-            System.out.println("4.- Listar todos los proovedores");
-            System.out.println("5.- Salir");
+            System.out.println("3.- Actualizar Ciudad del proovedor");
+            System.out.println("4.- Actualizar articulos");
+            System.out.println("5.- Listar todos los proovedores");
+            System.out.println("6.- Salir");
 
             opc = sc.nextInt();
 
             switch (opc) {
                 case 1:
+                    sc.nextLine();
+
                     System.out.println("********** Agregar proovedor ***********\n");
+
+                    System.out.println("Datos del nuevo proovedor");
+
+                    for (int i = 0; i < nameProovedores.length; i++) {
+                        System.out.println("Nombre: ");
+                        nameProovedores[i] = sc.nextLine();
+                        System.out.println("Ciudad de residencia: ");
+                        nameCity[i] = sc.nextLine();
+                        System.out.println("Articulos: ");
+                        numberProduct[i] = sc.nextInt();
+                    }
+
                     break;
 
                 case 2:
@@ -58,29 +71,96 @@ public class proovedores {
                     System.out.println("********** Buscar proovedor ***********\n");
 
                     System.out.println("Ingrese el nombre del proovedor");
-                    String nombre = sc.nextLine();
+                    String name = sc.nextLine();
 
-                    int res = buscarProovedor(nameProovedores, nombre);
+                    int res = buscarProovedor(nameProovedores, name);
 
                     if (res == -1) {
-                        System.out.println("No se encontro al proovedor" + nombre + "\n");
+                        System.out.println("No se encontro al proovedor" + name + "\n");
                     }else{
                         System.out.println("El proovedor se encuentra en la posicion: " + res + "\n");
 
                         System.out.println("********* Info del proovedor *********");
                         System.out.println("Nombre: "+ nameProovedores[res]);
                         System.out.println("Ciudad de residencia: "+ nameCity[res]);
-                        System.out.println("Articulos: "+ numberProduct[res]);
+                        System.out.println("Articulos: "+ numberProduct[res] + "\n");
                     }
 
                     break;
 
                 case 3:
-                    System.out.println("********** Actualizar artículos ***********\n");
+                    sc.nextLine();
+
+                    System.out.println("********** Actualizar Ciudad ***********\n");
+
+                    System.out.println("Ingrese el nombre del proovedor: ");
+                    String updateName = sc.nextLine();
+
+                    int upRes = buscarProovedor(nameProovedores, updateName);
+
+
+                    if (upRes == -1){
+                        System.out.println("No se encontro al proovedor" + updateName + "\n");
+                    }else {
+                        System.out.println("Ingrese la nueva ciudad de residencia: ");
+                        String newCity = sc.nextLine();
+
+                        nameCity[upRes] = newCity;
+
+                        System.out.println("Los nuevos datos son");
+                        System.out.println("Nombre: "+ nameProovedores[upRes]);
+                        System.out.println("Ciudad de residencia: "+ nameCity[upRes]);
+
+                    }
+
                     break;
 
                 case 4:
-                    System.out.println("********** Mostrar todos los proovedores ***********\n");
+                    System.out.println("********** Actualizar articulos ***********\n");
+
+                    int amount = 0, total = 0;
+                    sc.nextLine();
+
+                    System.out.println("Ingrese el nombre del proovedor: ");
+                    name = sc.nextLine();
+
+                    res = buscarProovedor(nameProovedores, name);
+
+                    if (res == -1){
+                        System.out.println("No se encontro al proovedor" + name + "\n");
+                    }else{
+                        System.out.println("1.- Aumentar articulos");
+                        System.out.println("2.- Disminuir articulos");
+                        int art = sc.nextInt();
+
+                        if (art == 1) {
+
+                            System.out.println("Ingrese el monto a umentar");
+                            amount = sc.nextInt();
+
+                            numberProduct[res] = numberProduct[res] + amount;
+
+                            System.out.println("********* Info del proovedor *********");
+                            System.out.println("Nombre: " + nameProovedores[res]);
+                            System.out.println("Articulos: " + numberProduct[res] + "\n");
+
+                        }else {
+                            System.out.println("Ingrese el monto a disminuir");
+                            amount = sc.nextInt();
+
+                            numberProduct[res] = numberProduct[res] - amount;
+
+                            System.out.println("********* Info del proovedor *********");
+                            System.out.println("Nombre: " + nameProovedores[res]);
+                            System.out.println("Articulos: " + numberProduct[res] + "\n");
+                        }
+                    }
+
+                    break;
+
+
+                case 5:
+                    System.out.println("********** Listado de proovedores ***********\n");
                     for (int i = 0; i < proovedores; i++) {
                         System.out.println("Nombre del proovedor: " + nameProovedores[i]);
                         System.out.println("Ciudad de residencia: " + nameCity[i]);
@@ -90,7 +170,7 @@ public class proovedores {
                     System.out.println("******************************************************\n");
                     break;
 
-                 case 5:
+                 case 6:
                      System.out.println("********** EXIT *********");
                      break;
 
@@ -102,7 +182,7 @@ public class proovedores {
             }
 
 
-        }while (opc != 5) ;
+        }while (opc != 6 ) ;
     }
 
     public static int buscarProovedor(String[] p,String n){
